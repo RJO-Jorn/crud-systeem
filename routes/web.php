@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KlantenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [KlantenController::class, 'index'])->name('home');
+Route::post('/fetch-data/{id}', [KlantenController::class, 'editData'])->name('edit-data');
+Route::post('/store', [KlantenController::class, 'store'])->name('create');
+Route::post('/delete/{id}', [KlantenController::class, 'delete'])->name('delete');
+Route::patch('/update', [KlantenController::class, 'update'])->name('update');
